@@ -1,0 +1,47 @@
+.586
+.MODEL FLAT
+INClUDE io.h
+.STACK 4096
+.DATA
+	p1 BYTE "enter x number ",0	
+	p2 BYTE "enter y number ",0
+	p3 BYTE "enter z number ",0
+			        x DWORD ?
+					y DWORD ?
+					z DWORD ?
+					temp BYTE 40 DUP(?)
+	re BYTE "the result of equation ",0
+	result BYTE 11 DUP(?)
+				.CODE
+
+				MainProc PROC
+
+			    input p1,temp,40
+				atod temp
+				mov x,eax
+
+				input p2,temp,40
+				atod temp
+				mov y,eax
+
+			    input p3,temp,40
+				atod temp
+				mov z,eax
+
+				mov eax,2  ;eax=z
+				mul z  ;z*2
+				
+				neg eax ;z*-1  
+				inc eax  ;z+1
+				add eax ,x ;x+z
+				add eax ,y  ;y+x+z(eax)
+				neg eax   ;eax * -1
+			    dtoa result ,eax
+
+			output re,result
+						
+			mov eax ,0
+				ret
+				MainProc ENDP
+				END
+
